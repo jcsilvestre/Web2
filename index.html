@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio - João Silva</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="skills/skills.css" />
+  <link rel="stylesheet" href="timeline/timeline.css" />
+  <link rel="stylesheet" href="about/about.css" />
+
+</head>
+<body>
+  <div id="header"></div>
+  <div id="about"></div>
+  <div id="skills"></div>
+  <div id="timeline"></div>
+  <div id="projects"></div>
+  <div id="statistics"></div>
+  <div id="contact"></div>
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="js/skills.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <script type="module">
+    import { createPerformanceChart, createContributionsChart } from './js/charts.js';
+
+    async function loadPartials() {
+      const sections = [
+        'header', 'about', 'skills', 'timeline',
+        'projects', 'statistics', 'contact', 'footer'
+      ];
+      
+      for (const section of sections) {
+        const response = await fetch(`${section}/${section}.html`);
+        const content = await response.text();
+        document.getElementById(section).innerHTML = content;
+      }
+
+      initializeScripts();
+    }
+
+    function initializeScripts() {
+      if (typeof startSkillAnimations === 'function') {
+        startSkillAnimations(); // Animações das skills
+      }
+
+      // Espera o DOM atualizar para renderizar os gráficos
+      setTimeout(() => {
+        createPerformanceChart();
+        createContributionsChart();
+      }, 100); 
+    }
+
+    window.addEventListener("load", loadPartials);
+  </script>
+</body>
+</html>

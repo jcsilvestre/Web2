@@ -1,0 +1,42 @@
+.about-section {
+    background-color: #f9fafb; /* tom leve, pode personalizar */
+  }
+  
+  .profile-image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;        /* mostra a imagem completa */
+    border-radius: 50%;
+    background-color: #f8f9fa;     /* evita fundo transparente */
+
+    padding: 4px;               /* pequeno respiro */
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-image:hover {
+    transform: scale(1.05);
+  }
+  
+  .about-text {
+    text-align: justify;
+  }
+  
+  .about-paragraph {
+    font-size: 1rem;            /* ajuste aqui para tamanhos menores */
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  /* Responsivo para mobile */
+  @media (max-width: 768px) {
+    .profile-image {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .about-paragraph {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+  
